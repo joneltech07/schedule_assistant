@@ -1,7 +1,7 @@
 <template>
   <div class="w-full max-w-2xl mx-auto p-6 md:p-8 bg-slate-900/80 backdrop-blur-md rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.4)] border border-white/5 text-slate-100 box-border">
     <h2 class="text-3xl font-bold text-center mt-0 mb-6 bg-gradient-to-br from-purple-400 to-indigo-500 bg-clip-text text-transparent">
-      Create Post
+      Schedule Task
     </h2>
 
     <form @submit.prevent="handleSubmit">
@@ -17,7 +17,7 @@
         <textarea 
           v-model="textContent" 
           rows="4"
-          placeholder="Write something, or drag & drop images here..."
+          placeholder="Describe your task, or drag & drop images here..."
           class="w-full bg-transparent text-slate-100 text-lg outline-none placeholder-slate-500 resize-y min-h-[100px] border-none focus:ring-0"
         ></textarea>
 
@@ -72,7 +72,7 @@
             class="px-8 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white border-none rounded-xl font-semibold text-base cursor-pointer transition-all duration-300 flex items-center gap-2 shadow-[0_5px_15px_rgba(99,102,241,0.3)] hover:not-disabled:-translate-y-0.5 hover:not-disabled:shadow-[0_8px_20px_rgba(99,102,241,0.4)] disabled:opacity-70 disabled:cursor-not-allowed active:not-disabled:translate-y-px"
             :disabled="isSubmitting || (!textContent && imagePreviews.length === 0)"
           >
-            <span>{{ isSubmitting ? 'Posting...' : 'Post' }}</span>
+            <span>{{ isSubmitting ? 'Scheduling...' : 'Schedule' }}</span>
             <span v-if="isSubmitting" class="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
           </button>
         </div>
@@ -179,7 +179,7 @@ const handleSubmit = async () => {
       });
     }
 
-    alert('Post submitted successfully!');
+    alert('Task scheduled successfully!');
     
     // Reset the form
     textContent.value = '';
@@ -187,7 +187,7 @@ const handleSubmit = async () => {
     imagePreviews.value = [];
   } catch (error) {
     console.error('Submission failed:', error);
-    alert('Failed to submit post. Please try again.');
+    alert('Failed to schedule task. Please try again.');
   } finally {
     isSubmitting.value = false;
   }
